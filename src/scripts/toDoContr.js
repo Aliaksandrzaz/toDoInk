@@ -5,9 +5,25 @@ export class Controller {
         this.model = new Model();
     }
 
-    addTask(taskTime, taskPrior, taskText, taskHeader, taskColor) {
+    addTask(taskTime, taskPrior, taskText, taskHeader, taskColor, rowLocation) {
         if (taskTime, taskPrior, taskText, taskHeader, taskColor) {
             this.model.addTask(taskTime, taskPrior, taskText, taskHeader, taskColor);
+            if (rowLocation) {
+                this.model.row();
+            }
+            else {
+                this.model.tile();
+            }
+
+        }
+    }
+
+    elementLocation(rowLocation) {
+        if (rowLocation) {
+            this.model.row();
+        }
+        else {
+            this.model.tile();
         }
     }
 

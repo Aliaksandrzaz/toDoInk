@@ -10,14 +10,14 @@ export class Model {
     }
 
     template(taskTime, taskPrior, taskText, taskHeader, taskColor) {
-        let task = document.createElement('div');
-        let className = ['container-fluid', 'm-1', 'task'];
-        className.forEach((el)=>{
+        let task = document.createElement('div'),
+            className = ['container-fluid', 'm-1', 'task'];
+        className.forEach((el) => {
             task.classList.add(el);
         });
         task.id = Date.now();
         this.textTask = `
-            <div class="row justify-content-center  align-items-center bg-info m-1">
+            <div class="row justify-content-center h-100 align-items-center bg-info m-1">
                 <div class="col-md m-2">
                     <div class="container justify-content-center align-items-center ">  
                         <div class="row justify-content-center">
@@ -65,7 +65,67 @@ export class Model {
     }
 
 
-    tile(){
+    tile() {
+        let height = 0,
+            classStyleLocation = ['col-lg-4', 'col-md-4', 'col-sm-6'],
+            containerTask = document.body.querySelectorAll('.task');
+
+        // for (let el = 0; el < containerTask.length; el++) {
+        //     for (let style = 0; style < containerTask.length; style++) {
+        //         containerTask[el].classList.add(classStyleLocation[style]);
+        //     }
+        // }
+        //
+        // for (let el = 0; el < containerTask.length; el++) {
+        //     if (parseFloat(getComputedStyle(containerTask[el]).height) > height) {
+        //         height = parseFloat(getComputedStyle(containerTask[el]).height);
+        //     }
+        // }
+        //
+        // for (let el = 0; el < containerTask.length; el++) {
+        //     containerTask[el].style.height = `${height}px`;
+        // }
+
+        containerTask.forEach((el) => {
+            classStyleLocation.forEach((style) => {
+                el.classList.add(style);
+            });
+        });
+
+        containerTask.forEach((el) => {
+            if (parseFloat(getComputedStyle(el).height) > height) {
+                height = parseFloat(getComputedStyle(el).height);
+            }
+        });
+
+        containerTask.forEach((el) => {
+            el.style.height = `${height}px`;
+        });
+    }
+
+    row() {
+        let classStyleLocation = ['col-lg-4', 'col-md-4', 'col-sm-6'],
+            containerTask = document.body.querySelectorAll('.task');
+
+        for (let el = 0; el < containerTask.length; el++) {
+            for (let style = 0; style < containerTask.length; style++) {
+                containerTask[el].classList.remove(classStyleLocation[style]);
+            }
+        }
+
+        for (let el = 0; el < containerTask.length; el++) {
+            containerTask[el].style.height = `auto`;
+        }
+
+        // containerTask.forEach((el) => {
+        //     classStyleLocation.forEach((style) => {
+        //         el.classList.remove(style);
+        //     });
+        // });
+        //
+        // containerTask.forEach((el) => {
+        //     el.style.height = `auto`;
+        // });
 
     }
 

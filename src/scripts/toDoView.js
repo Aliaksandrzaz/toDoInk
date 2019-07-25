@@ -1,7 +1,7 @@
 import {Model} from "./toDoModel";
 import {Controller} from "./toDoContr";
 import {eventEmitter} from "./eventEmitter";
-import {polyfillAppend,polyfillMatches} from "./appendPolifill";
+import {polyfillAppend, polyfillMatches} from "./appendPolifill";
 
 const elementClosest = require('element-closest');
 
@@ -53,6 +53,11 @@ export class View {
         this.valueCountToDo = document.getElementById('countToDo');
         this.valueCountCompleted = document.getElementById('countCompleted');
 
+        this.btnTile = document.getElementById('btnTile');
+        this.btnRow = document.getElementById('btnRow');
+
+        this.rowLocation = true;
+
         this.countToDo();
         this.timeNow();
         this.addNewTask();
@@ -71,23 +76,23 @@ export class View {
                 this.wrapperSideMenu.classList.toggle('collapse');
                 return;
             case this.btnTaskSave:
-                return this.controller.addTask(this.taskTime.textContent, this.taskPrior.value, this.taskText.value, this.taskHeader.value, this.btnColorTask.value);
+                return this.controller.addTask(this.taskTime.textContent, this.taskPrior.value, this.taskText.value, this.taskHeader.value, this.btnColorTask.value, this.rowLocation);
             case this.btnCompletedTask:
                 let completedTask = event.target.closest('.task');
                 this.deleteTask(completedTask);
                 this.controller.completedTask(completedTask);
                 return;
             // case this.btnEditTask:
-                // let editTask = event.target.closest('.task');
-                // this.editTaskContainer = event.target.closest('.task');
-                // this.taskTime.textContent = this.editTaskContainer.querySelector('[data-time]').textContent;
-                // this.taskPrior.value = this.editTaskContainer.querySelector('[data-priority]').textContent;
-                // this.taskText.value = this.editTaskContainer.querySelector('[data-text]').textContent;
-                // this.taskHeader.value = this.editTaskContainer.querySelector('[data-header]').textContent;
-                // this.btnColorTask.value =;
-                // this.editTaskFlag = event.target.closest('.task');
-                // this.controller.editTask(this.taskTime.textContent, this.taskPrior.value, this.taskText.value, this.taskHeader.value, this.btnColorTask.value);
-                // return this.editTask(this.editTaskContainer);
+            // let editTask = event.target.closest('.task');
+            // this.editTaskContainer = event.target.closest('.task');
+            // this.taskTime.textContent = this.editTaskContainer.querySelector('[data-time]').textContent;
+            // this.taskPrior.value = this.editTaskContainer.querySelector('[data-priority]').textContent;
+            // this.taskText.value = this.editTaskContainer.querySelector('[data-text]').textContent;
+            // this.taskHeader.value = this.editTaskContainer.querySelector('[data-header]').textContent;
+            // this.btnColorTask.value =;
+            // this.editTaskFlag = event.target.closest('.task');
+            // this.controller.editTask(this.taskTime.textContent, this.taskPrior.value, this.taskText.value, this.taskHeader.value, this.btnColorTask.value);
+            // return this.editTask(this.editTaskContainer);
             case this.btnDeleteTask:
                 let deleteTask = event.target.closest('.task');
                 this.controller.deleteTask(deleteTask);
@@ -102,6 +107,12 @@ export class View {
                 return this.controller.filterPriority(element.dataset.priority);
             case this.btnSort:
                 return this.controller.sortTime();
+            case this.btnTile:
+                this.rowLocation = false;
+                return this.controller.elementLocation(this.rowLocation);
+            case this.btnRow:
+                this.rowLocation = true;
+                return this.controller.elementLocation(this.rowLocation);
         }
     }
 
@@ -173,5 +184,4 @@ export class View {
             this.valueCountCompleted.textContent = text.countCompleted;
         });
     }
-
 }

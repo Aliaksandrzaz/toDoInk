@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ToDo</title>
+    <script src="https://unpkg.com/element-closest/browser"></script>
 </head>
 <body>
 
@@ -70,8 +71,8 @@
             <div class="container-fluid">
                 <div class="row justify-content-end">
                     <div class="column">
-                        <button type="button" class="btn btn-primary m-3"> Tile</button>
-                        <button type="button" class="btn btn-primary m-3">Row</button>
+                        <button type="button" class="btn btn-primary m-3" id="btnTile">Tile</button>
+                        <button type="button" class="btn btn-primary m-3" id="btnRow">Row</button>
                     </div>
 
                 </div>
@@ -82,7 +83,7 @@
                     <h3 class="">To do (<span id="countToDo">0</span>)</h3>
                 </div>
 
-                <div class="row" id="toDo"></div>
+                <div class="row justify-content-center" id="toDo"></div>
             </div>
 
             <div class="container-fluid" id="wrapperCompleted">
@@ -90,7 +91,7 @@
                     <h3 class="">Completed (<span id="countCompleted">0</span>)</h3>
                 </div>
 
-                <div class="row" id="completed"></div>
+                <div class="row justify-content-center" id="completed"></div>
             </div>
         </div>
     </div>
