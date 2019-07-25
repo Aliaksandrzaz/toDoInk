@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ToDo</title>
+</head>
+<body>
+
+<div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right collapse" id="sidebar-wrapper">
+        <div class="sidebar-heading">ToDo</div>
+        <div class="list-group list-group-flush">
+            <a href="#" class="list-group-item list-group-item-action ">HOME</a>
+            <a href="#" class="list-group-item list-group-item-action ">MENU</a>
+        </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom ">
+            <button class="btn btn-primary" id="menu-toggle">Side menu</button>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                    <li class="nav-item active drop-item-center">
+                        <div class="dropdown">
+                            <button class="btn btn-primary m-3 dropdown-toggle w-75" type="button"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                Priority
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <button class="dropdown-item" type="button" data-priority="All">ALL</button>
+                                <button class="dropdown-item" type="button" data-priority="Hight">HIGTH</button>
+                                <button class="dropdown-item" type="button" data-priority="Medium">MEDIUM</button>
+                                <button class="dropdown-item" type="button" data-priority="Low">LOW</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item active drop-item-center">
+                        <button type="button" class="btn btn-primary m-3 w-75" data-sort>Time</button>
+                    </li>
+                    <li class="nav-item drop-item-center">
+                        <button type="button" class="btn btn-primary m-3 w-75" data-toggle="modal"
+                                data-target="#basicExampleModal">
+                            Add task
+                        </button>
+                    </li>
+                    <li class="nav-item drop-item-center">
+                        <button type="button" class="btn btn-primary m-3 w-75" data-auto>
+                            Sign in
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="container-fluid">
+                <div class="row justify-content-end">
+                    <div class="column">
+                        <button type="button" class="btn btn-primary m-3"> Tile</button>
+                        <button type="button" class="btn btn-primary m-3">Row</button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="container-fluid" id="wrapperToDo">
+                <div class="row">
+                    <h3 class="">To do (<span id="countToDo">0</span>)</h3>
+                </div>
+
+                <div class="row" id="toDo"></div>
+            </div>
+
+            <div class="container-fluid" id="wrapperCompleted">
+                <div class="row">
+                    <h3 class="">Completed (<span id="countCompleted">0</span>)</h3>
+                </div>
+
+                <div class="row" id="completed"></div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+    <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action id="formTask">
+                <div class="modal-content">
+                    <div class="modal-header ">
+                        <h5 class="modal-title " id="exampleModalLabel">Add your task</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row justify-content-around m-2 ">
+
+                            <div class="column">
+                                <div class="" id="taskTime">Time</div>
+                            </div>
+
+                            <div class="column">
+                                <select id="taskPrior" class="browser-default custom-select" required>
+                                    <option value="" disabled selected>Select your Priority</option>
+                                    <option value="Hight">Hight</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="Low">Low</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="row justify-content-around m-2  justify-content-center">
+                            <div class="column">
+                                <select id="taskColor" class="browser-default custom-select" required>
+                                    <option value="" disabled selected>Select your color</option>
+                                    <option value="bg-secondary">GREY</option>
+                                    <option value="bg-danger">RED</option>
+                                    <option value="bg-warning">YELLOW</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="md-form m-5">
+                            <input id="taskHeader" type="text" placeholder="Заголовок" class="md-input form-control"
+                            >
+                        </div>
+
+                        <div class="md-form m-5">
+                            <textarea id="taskText" class="md-textarea form-control" rows="10"
+                                      placeholder="Задача"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnTaskSave">Save</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
